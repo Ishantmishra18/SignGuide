@@ -19,47 +19,16 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser())
 
-app.get('/profile', async (req, res) => {
-    const { token } = req.cookies;
-    
-    if (token) {
-        jwt.verify(token, jwtsec, async (err, decodedToken) => {
-            if (err) {
-                console.error('JWT verification error:', err);
-                return res.status(403).json({ message: 'Invalid token' });
-            }
-
-            try {
-                // Ensure `decodedToken` has an `id`
-                if (!decodedToken || !decodedToken.id) {
-                    return res.status(400).json({ message: 'Invalid token payload' });
-                }
-
-                const userData = await User.findById(decodedToken.id).populate('accommodation');
-                
-                if (!userData) {
-                    return res.status(404).json({ message: 'User not found' });
-                }
-
-                res.json(userData);
-            } catch (error) {
-                console.error('Error retrieving user data:', error);
-                res.status(500).json({ message: 'Failed to retrieve user data' });
-            }
-        });
-    } else {
-        res.status(401).json({ message: 'Token not found' });
-    }
-});
 
 app.post('/register' , (req, res)=>{
-    const {username , password}=req.body
+    const {username , password , email}=req.body
     console.log('helo')
     bcrypt.genSalt(10, (err, salt)=>{
         bcrypt.hash(password , salt , async (err,hash)=>{
             let user= await User.create({
                 username,
                 password:hash,
+                email
             })
             res.status(201).json(user)
         })
@@ -107,6 +76,94 @@ app.post('/login', async (req, res) => {
         return res.status(500).json({ message: 'Server error' });
     }
 });
+
+app.get('/logout', (req, res) => {
+    console.log("Logging out user");
+
+    // Clear the 'token' cookie by setting it to an empty string and expiring it immediately
+    res.cookie('token', '', {
+        httpOnly: true,   // Keeps it secure in HTTP-only mode
+        secure: process.env.NODE_ENV === 'production', // Ensures it's only secure in production
+        maxAge: 0        // Expires the cookie immediately
+    });
+
+    res.status(200).json({ message: 'Logged out successfully' });
+});
+
+app.get('/profile', async (req, res) => {
+    try {
+        const { token } = req.cookies;
+
+        if (!token) {
+            return res.status(401).json({ message: 'Token not found' });
+        }
+
+        jwt.verify(token, jwtsec, async (err, decodedToken) => {
+            if (err) {
+                console.error('JWT verification error:', err);
+                return res.status(403).json({ message: 'Invalid token' });
+            }
+
+            try {
+                if (!decodedToken?.id) {
+                    return res.status(400).json({ message: 'Invalid token payload' });
+                }
+
+                const userData = await User.findById(decodedToken.id);
+
+                if (!userData) {
+                    return res.status(404).json({ message: 'User not found' });
+                }
+
+                res.status(200).json(userData);
+            } catch (error) {
+                console.error('Error retrieving user data:', error);
+                res.status(500).json({ message: 'Failed to retrieve user data' });
+            }
+        });
+
+    } catch (error) {
+        console.error('Unexpected error:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+
+
+
+app.post("/quizsubmit", async (req, res) => {
+    try {
+        const { token } = req.cookies;  
+        const { total, correct } = req.body;
+
+        if (!token) {
+            return res.status(401).json({ message: "Unauthorized: No token provided" });
+        }
+
+        jwt.verify(token, jwtsec, async (err, decodedToken) => {
+            if (err) {
+                return res.status(401).json({ message: "Unauthorized: Invalid token" });
+            }
+
+            const user = await User.findById(decodedToken.id);
+            if (!user) {
+                return res.status(404).json({ message: "User not found" });
+            }
+            let [currt , currcor]=user.quiz;
+            currt = total + currt;
+            currcor = correct + currcor;
+            user.quiz = [ currt, currcor ]; // Storing quiz data as an object
+            await user.save();
+
+            res.status(200).json({ message: "Quiz submitted successfully!", quiz: user.quiz });
+        });
+
+    } catch (error) {
+        res.status(500).json({ message: "Internal Server Error", error: error.message });
+    }
+});
+
+
+
 
 app.get('/',(req , res)=>{
     res.send('the server is running')

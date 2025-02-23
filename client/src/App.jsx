@@ -7,6 +7,10 @@ import Nav from './Component/navbar.jsx'
 import Video from './Pages/video.jsx'
 import Landing from './Pages/landing.jsx'
 import { UserContextProvider } from './Context/user'
+import Profile from './Pages/profile.jsx'
+import Quiz from './Pages/quiz.jsx'
+import Article from './Pages/article.jsx'
+import QuizPage from './Pages/quizpage.jsx'
 
 
 
@@ -20,7 +24,7 @@ const App = () => {
       <Landing/>
       </>
     },{
-       path:'/home',
+       path:'/videos',
       element:<>
         <Nav/>
         <Home/>
@@ -36,9 +40,37 @@ const App = () => {
       element:<Register/>
     },
     {
-      path:'/vid/:param',
-      element:<Video/>
+      path:'/videos/:param',
+      element:<>
+      <Nav/>
+      <Video/>
+      </>
     },
+    {
+      path:'/profile',
+      element:<Profile/>
+    },
+    {
+      path:'/quiz',
+      element:<>
+      <Nav/>
+      <Quiz/>
+      </>
+    },
+    {
+      path:'/quiz/:param',
+      element:<>
+      <Nav/>
+      <QuizPage/>
+      </>
+    },
+    {
+      path:'/articles',
+      element:<>
+      <Nav/>
+      <Article/>
+      </>
+    }
   ])
   return (
     <>  

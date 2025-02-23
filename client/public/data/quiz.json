@@ -1,0 +1,56 @@
+{
+    "quizzes": [
+      {
+        "title": "Beginner Quiz",
+        "questions": 10,
+        "difficulty": "Easy",
+        "quiz": [
+          {
+            "question": "What is 2 + 2?",
+            "options": ["1", "2", "3", "4"],
+            "ans": 3
+          },
+          {
+            "question": "Which planet is known as the Red Planet?",
+            "options": ["Earth", "Mars", "Venus", "Jupiter"],
+            "ans": 1
+          }
+        ]
+      },
+      {
+        "title": "Intermediate Quiz",
+        "questions": 15,
+        "difficulty": "Medium",
+        "quiz": [
+          {
+            "question": "What is the capital of France?",
+            "options": ["Berlin", "Madrid", "Paris", "Rome"],
+            "ans": 2
+          },
+          {
+            "question": "What is the square root of 144?",
+            "options": ["10", "11", "12", "13"],
+            "ans": 2
+          }
+        ]
+      },
+      {
+        "title": "Advanced Quiz",
+        "questions": 20,
+        "difficulty": "Hard",
+        "quiz": [
+          {
+            "question": "Who developed the theory of relativity?",
+            "options": ["Newton", "Einstein", "Tesla", "Hawking"],
+            "ans": 1
+          },
+          {
+            "question": "What is the chemical symbol for Gold?",
+            "options": ["Au", "Ag", "Pb", "Fe"],
+            "ans": 0
+          }
+        ]
+      }
+    ]
+  }
+  

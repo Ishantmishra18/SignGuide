@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
-const VideoPlayer = ({param}) => {
-    
+const VideoPlayer = () => {
+  const { videoId } = useParams();
+  const [watchLater, setWatchLater] = useState([]);
+
   const suggestedVideos = [
     { id: 1, title: "Suggested Video 1", thumbnail: "https://via.placeholder.com/150" },
     { id: 2, title: "Suggested Video 2", thumbnail: "https://via.placeholder.com/150" },
@@ -10,36 +12,58 @@ const VideoPlayer = ({param}) => {
     { id: 4, title: "Suggested Video 4", thumbnail: "https://via.placeholder.com/150" },
   ];
 
+  const addToWatchLater = (video) => {
+    if (!watchLater.find((v) => v.id === video.id)) {
+      setWatchLater([...watchLater, video]);
+    }
+  };
+
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen text-white overflow-x-hiddenuiop
-    ">
+    <div className="flex flex-col lg:flex-row min-h-screen text-white overflow-x-hidden">
       {/* Main Video Section */}
-      <div className="flex-1 p-4 lg:p-8">
-        <div className="aspect-video bg-black rounded-lg overflow-hidden">
+      <div className="flex-1 p-4 lg:p-4">
+        <div className="aspect-video rounded-lg overflow-hidden">
           <video controls className="w-full h-full">
             <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
         <h1 className="text-xl lg:text-2xl font-bold mt-4">Big Video Title</h1>
-        <p className="text-gray-400 mt-2">This is a description of the video currently playing. Enjoy watching!</p>
+        <p className="text-gray-400 mt-2">This is a description of the video currently playing.</p>
+        <button
+          onClick={() => addToWatchLater({ id: videoId, title: "Big Video Title" })}
+          className="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg"
+        >
+          Watch Later
+        </button>
       </div>
 
       {/* Suggested Videos Section */}
-      <div className="w-full lg:w-1/3 p-4 lg:p-8">
-        <h2 className="text-xl font-bold mb-4">Next Videos</h2>
-        <div className="space-y-4">
+      <div className="w-full lg:w-1/3 p-4 lg:p-2">
+       
+        <div className="flex flex-col gap-">
           {suggestedVideos.map((video) => (
             <div
               key={video.id}
-              className="flex items-center gap-4 p-2 bg-neutral-400 rounded-lg hover:bg-gray-600 cursor-pointer"
+              className="flex gap-4 p-2 rounded-lg hover:bg-neutral-200 cursor-pointer"
             >
               <img
                 src={video.thumbnail}
                 alt={video.title}
-                className="w-28 h-24 rounded-lg object-cover"
+                className="h-32 aspect-video rounded-lg object-cover bg-black"
               />
-              <h3 className="text-sm font-medium">{video.title}</h3>
+              <div>
+                <h3 className="font-medium text-black text-xl">the title is here</h3>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    addToWatchLater(video);
+                  }}
+                  className="text-xs text-gray-300 hover:text-white"
+                >
+                  + Watch Later
+                </button>
+              </div>
             </div>
           ))}
         </div>

@@ -5,6 +5,7 @@ import axios from 'axios'
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import {UserContext} from "../Context/user";
+import Sidelog from '../Component/sidelog';
 
 const login = () => {
     const [username, setUsername]=useState('')
@@ -19,7 +20,7 @@ const login = () => {
     const loginSub = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/login', { username, password }
+            const response = await axios.post('/login', { username, password }
                   // This ensures the cookie is sent with the request
             );
            
@@ -48,16 +49,12 @@ const login = () => {
     
 
     if (redirect) {
-        return <Navigate to="/home" />;
+        return <Navigate to="/videos" />;
     }
 
   return (
     <div className='h-screen w-screen flex'>
-       <div className="w-[55vw] h-full rounded-r-[10%] shadow-lg overflow-hidden grid place-content-center bg-[url('/assets/login.png')] bg-center bg-cover bg-black/50">
-  <div className="w-[30vw] aspect-square rounded-3xl bg-white bg-opacity-10 backdrop-blur-md p-5 flex items-center justify-center">
-    <h2 className="text-white text-2xl">"Deafness is a sensory difference"</h2>
-  </div>
-</div>
+     <Sidelog></Sidelog>
         <div className="login grid place-content-center h-auto w-[45vw] py-6 shadow-lg bg-white rounded-md">
            
             <form action="" onSubmit={loginSub} className='flex flex-col gap-4 items-center w-[27vw]'>
