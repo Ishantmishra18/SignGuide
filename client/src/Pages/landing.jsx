@@ -15,7 +15,7 @@ const landing = () => {
             <div className="text-lg">learn to connect with deaf people</div>
             <div className="flex gap-8 mt-10 text-2xl items-center">
                 <Link to='/articles' className="bg-sec rounded-full px-12 py-3 border-[2px] border-black whitespace-nowrap hover:translate-y-1 duration-300">Start Learning</Link>
-                <Link to='/vid/first' className="flex gap-3 items-center px-12 py-3 rounded-full hover:bg-main whitespace-nowrap"><FiPlayCircle/> <h1>Watch Videos</h1></Link>
+                <Link to='/videos/no' className="flex gap-3 items-center px-12 py-3 rounded-full hover:bg-main whitespace-nowrap"><FiPlayCircle/> <h1>Watch Videos</h1></Link>
             </div>
         </div>
         <div className="w-[40%] h-full">

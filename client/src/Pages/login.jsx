@@ -49,7 +49,7 @@ const login = () => {
     
 
     if (redirect) {
-        return <Navigate to="/videos" />;
+        return <Navigate to="/" />;
     }
 
   return (

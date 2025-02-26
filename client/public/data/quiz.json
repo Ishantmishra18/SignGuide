@@ -1,25 +1,33 @@
 {
     "quizzes": [
       {
-        "title": "Beginner Quiz",
+        "title": "Alphabet Quiz",
         "questions": 10,
         "difficulty": "Easy",
         "quiz": [
           {
-            "question": "What is 2 + 2?",
+            "question": "What alphabet does it represent ?",
+            "img":"https://cdn.britannica.com/91/249591-131-38A9FBAF/letter-D-American-Sign-Language-ASL.jpg",
             "options": ["1", "2", "3", "4"],
             "ans": 3
           },
           {
-            "question": "Which planet is known as the Red Planet?",
+            "question": "What alphabet does it represent ?",
+            "img":"https://cdn.britannica.com/09/249609-131-FD1B25C6/letter-V-American-Sign-Language-ASL.jpg",
             "options": ["Earth", "Mars", "Venus", "Jupiter"],
+            "ans": 1
+          },
+          {
+            "question": "What alphabet does it represent ?",
+            "img":"https://cdn.britannica.com/09/249609-131-FD1B25C6/letter-V-American-Sign-Language-ASL.jpg",
+            "options": ["A", "C", "V", "B"],
             "ans": 1
           }
         ]
       },
       {
-        "title": "Intermediate Quiz",
-        "questions": 15,
+        "title": "One Word Quiz",
+        "questions": 10,
         "difficulty": "Medium",
         "quiz": [
           {

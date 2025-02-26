@@ -5,7 +5,7 @@ import { UserContext } from '../Context/user';
 
 const  nav = () => {
 
-  const navbar = [{main:'Learn' , sub:['articles' , 'videos' , 'quiz']},{main:'Detect' , sub:['imgDetect', 'imgUpload']},{main:'About Us', sub:["Akshat(Group Leader)",'ishant' , 'kaddu' , 'samay' , 'rishabh',]}]
+  const navbar = [{main:'Learn' , sub:['articles' , 'videos' , 'quiz']},{main:'Detect' , sub:['imgDetect', 'imgUpload']},{main:'About Us', sub:["Akshat(Group Leader)",'Akash sharma(bhrahmin)','ishant' , 'kaddu' , 'samay' , 'rishabh',]}]
 
   const {user} = useContext(UserContext)
   return (
@@ -38,9 +38,7 @@ const  nav = () => {
 
 
         {user!=null ? (
-          <Link to='/profile' className="w-10 h-10">
-              <img src={user.photo} alt="Profile" className="w-full h-full rounded-full"/>
-          </Link>
+           <Link to="/profile" className={`font-semibold bg-sec px-12 border-2 border-black  py-3`}>Profile</Link>
 
 ) : (
           <Link to="/login" className={`font-semibold bg-sec px-12 border-2 border-black  py-3`}>Log in</Link>

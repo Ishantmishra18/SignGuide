@@ -11,6 +11,7 @@ import Profile from './Pages/profile.jsx'
 import Quiz from './Pages/quiz.jsx'
 import Article from './Pages/article.jsx'
 import QuizPage from './Pages/quizpage.jsx'
+import ImgUpload from './Pages/imgUpload.jsx'
 
 
 
@@ -48,7 +49,9 @@ const App = () => {
     },
     {
       path:'/profile',
-      element:<Profile/>
+      element:<>
+       <Nav/><Profile/>
+      </>
     },
     {
       path:'/quiz',
@@ -69,6 +72,13 @@ const App = () => {
       element:<>
       <Nav/>
       <Article/>
+      </>
+    },
+    {
+      path:'/imgUpload',
+      element:<>
+      <Nav></Nav>
+      <ImgUpload></ImgUpload>
       </>
     }
   ])

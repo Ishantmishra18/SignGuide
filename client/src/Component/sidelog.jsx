@@ -12,7 +12,7 @@ const sidelog = () => {
         <h2 className='text-4xl text-white mt-10 mb-10'>Hey there Welcome</h2>
         
       <h2 className="text-2xl mb-36 text-neutral-400 relative">"Deafness is a sensory difference" <h3 className='text-lg absolute -bottom-6 -right-4'>Samay Jain</h3></h2>
-      <Link to='/' className='bg-sec px-8 py-4 border-black border-2'>back to home</Link>
+      
     </div>
   </div>
   )

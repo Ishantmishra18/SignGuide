@@ -12,8 +12,8 @@ const QuizPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col items-center gap-8 p-8 bg-gray-100 overflow-x-hidden">
-      <h1 className="text-5xl font-bold text-gray-800 mt-10">Choose Your Quiz</h1>
+    <div className="min-h-screen flex flex-col items-center gap-8 p-8 overflow-x-hidden">
+      <h1 className="text-5xl mt-10">Choose Your Quiz</h1>
       <div className="flex flex-wrap justify-center gap-6">
         {quizzes.length > 0 ? (
           quizzes.map((quiz, index) => (
@@ -21,9 +21,9 @@ const QuizPage = () => {
               key={index}
               className="w-[30vw] h-[30vh] shadow-lg rounded-md p-5 bg-white flex flex-col justify-between border-l-4 border-sec"
             >
-              <h2 className="text-3xl font-semibold text-gray-700">{quiz.title}</h2>
-              <p className="text-gray-600">Questions: {quiz.questions}</p>
-              <p className="text-gray-600">Difficulty: {quiz.difficulty}</p>
+              <h2 className="text-3xl">{quiz.title}</h2>
+              <p className="text-neutral-800">Questions: {quiz.questions}</p>
+              <p className="text-neutral-800">Difficulty: {quiz.difficulty}</p>
               <div className="flex gap-4 mt-4">
                 <Link
                   to={`${index}`}
