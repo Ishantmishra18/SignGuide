@@ -4,7 +4,7 @@ const SignLanguageArticle = () => {
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 p-10 flex flex-col items-center">
       <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg p-8">
-        <h1 className="text-4xl font-bold text-center text-blue-600 mb-6">Learn Sign Language</h1>
+        <h1 className="text-4xl font-bold text-center text-sec mb-6">Learn Sign Language</h1>
         
         <p className="text-lg mb-4 leading-relaxed">
           Sign language is a visual means of communication that uses hand gestures, facial expressions, and body language. It enables people with hearing impairments to communicate effectively and has its own unique grammar and structure.
@@ -19,7 +19,7 @@ const SignLanguageArticle = () => {
         
         <div className="mt-6 text-center">
           <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/ASL_Manual_Alphabet.svg/800px-ASL_Manual_Alphabet.svg.png" 
+            src="/art/1.webp" 
             alt="ASL Alphabet" 
             className="w-full max-w-md mx-auto rounded-lg shadow-md"
           />
@@ -32,11 +32,11 @@ const SignLanguageArticle = () => {
         </p>
         <div className="grid grid-cols-2 gap-6">
           <div className="text-center">
-            <img src="https://www.lifeprint.com/asl101/signjpegs/hello.jpg" alt="Hello sign" className="rounded-lg shadow-md" />
+            <img src="/art/2.webp" alt="Hello sign" className="rounded-lg shadow-md" />
             <p className="text-lg font-medium mt-2">Hello</p>
           </div>
           <div className="text-center">
-            <img src="https://www.lifeprint.com/asl101/signjpegs/thank-you.jpg" alt="Thank you sign" className="rounded-lg shadow-md" />
+            <img src="/art/3.webp" alt="Thank you sign" className="rounded-lg shadow-md" />
             <p className="text-lg font-medium mt-2">Thank You</p>
           </div>
         </div>

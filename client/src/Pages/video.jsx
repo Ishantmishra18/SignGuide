@@ -1,6 +1,8 @@
 import React, { useState ,useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+import Loader from "../Component/loader";
 
 const VideoPlayer = () => {
   const { videoId } = useParams();
@@ -33,19 +35,20 @@ const VideoPlayer = () => {
 
     
 
-  const addToWatchLater = (video) => {
-    if (!watchLater.find((v) => v.id === video.id)) {
-      setWatchLater([...watchLater, video]);
-    }
+  const addToWatchLater = (videoID) => {
+    let res = axios.post('/watchLater' , {videoID});
+    setUser()
   };
 
 
-  if(param==null||mainVideo==null){
-    return <div className="">loading...</div>
-  }
+  
 
   return (
     <div className="flex flex-col lg:flex-row min-[88vh] overflow-x-hidden">
+      {
+        (param==null||mainVideo==null)&&<Loader></Loader> 
+        }
+
       {/* Main Video Section */}
       <div className="flex-1 px-4 lg:px-4">
         <div className="aspect-video rounded-lg overflow-hidden">
@@ -90,8 +93,7 @@ const VideoPlayer = () => {
                 <h3 className=" text-black text-xl w-52">{video.title}</h3>
                 <button
                   onClick={(e) => {
-                    e.stopPropagation();
-                    addToWatchLater(video);
+                    addToWatchLater(videoLink);
                   }}
                   className="text-sm bg-sec px-2 py-1 "
                 >
